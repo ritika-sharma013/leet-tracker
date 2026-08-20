@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "LeetCode Progress Tracker",
+    "version": "1.0.0",
+    "description": "Sends accepted LeetCode submission stats to Supabase.",
+    "permissions": [],
+    "host_permissions": [
+        "https://leetcode.com/*",
+        "https://*.supabase.co/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/*"
+            ],
+            "js": [
+                "page-hook.js"
+            ],
+            "run_at": "document_start",
+            "world": "MAIN"
+        },
+        {
+            "matches": [
+                "https://leetcode.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_start",
+            "world": "ISOLATED"
+        }
+    ],
+    "action": {
+        "default_title": "LeetCode Progress Tracker"
+    }
+}
